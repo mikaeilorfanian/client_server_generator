@@ -1,0 +1,46 @@
+from typing import List
+import yaml
+
+import settings
+
+
+def read_config_file(file_name):
+    with open(file_name, 'r') as stream:
+        conf = yaml.load(stream)
+    return conf
+
+
+def parse_server_conf():
+    conf = read_config_file(settings.CONF_FILENAME)
+    return ServerConfig(conf)
+
+
+class Route:
+
+    def __init__(self, raw_config):
+        self.name = raw_config['route_name']
+        self.route = raw_config['route']
+        self.http_method = raw_config['http_method']
+
+
+class ServerConfig:
+
+    def __init__(self, conf: dict):
+        self.raw_config = conf
+        self.raw_routes_conf = conf['server']['routes']
+
+    def __call__(self, route_name: str) -> Route:
+        for route in self.routes:
+            if route.name == route_name:
+                return route
+        raise ValueError('Route name not found')
+
+    @property
+    def routes(self) -> List[Route]:
+        return [Route(raw_route_conf) for raw_route_conf in self.raw_routes_conf]
+
+    def backend(self):
+        return self.raw_config['server']['server_backend']
+
+
+server_config = parse_server_conf()

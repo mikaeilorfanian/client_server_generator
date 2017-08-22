@@ -1,0 +1,7 @@
+--
+server:
+  server_backend: bottle
+  routes:
+    route_name: hello_name
+    route: /hello/<name>
+    http_method: GET
