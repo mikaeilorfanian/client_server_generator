@@ -40,7 +40,7 @@ class ServerConfig:
     def routes(self) -> List[Route]:
         return [Route(raw_route_conf) for raw_route_conf in self.raw_routes_conf]
 
-    def backend(self):
+    def backend(self) -> str:
         return self.raw_config['server']['server_backend']
 
 
