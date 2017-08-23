@@ -21,6 +21,7 @@ class Route:
         self.name = raw_config['route_name']
         self.route = raw_config['route']
         self.http_method = raw_config['http_method']
+        self.route_variable = raw_config['route_variable']
 
 
 class ServerConfig:
