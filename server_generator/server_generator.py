@@ -1,4 +1,4 @@
-from .server_conf import server_config
+from configurator.server_conf import server_config
 
 
 class BaseServerGenerator:

@@ -1,6 +1,8 @@
 from typing import List
 import yaml
 
+import requests
+
 import settings
 
 
@@ -10,8 +12,20 @@ def read_config_file(file_name):
     return conf
 
 
+def read_config_from_remoate_raw_page(page_url):
+    r = requests.get(page_url)
+    return yaml.load(r.text)
+
+
 def parse_server_conf():
-    conf = read_config_file(settings.CONF_FILENAME)
+
+    if settings.CONFIG['type'] == settings.FILE_CONFIG_TYPE:
+        conf = read_config_file(settings.CONFIG['path'])
+    elif settings.CONFIG['type'] == settings.REMOTE_RAW_PAGE:
+        conf = read_config_from_remoate_raw_page(settings.CONFIG['path'])
+    else:
+        raise ValueError('Wrong configuration set in settings.py!')
+
     return ServerConfig(conf)
 
 
