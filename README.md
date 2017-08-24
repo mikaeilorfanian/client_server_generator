@@ -56,10 +56,16 @@ server:
 ```
 ## Client Application
 TODO
-## Using This Library Saves Time and a Lot of Headache
+# Using This Library Saves You Time and a Lot of Headache
 As you can see from the above sample applications, `client_server_generator` makes your job as a web developer eaiser
  by automating the generation of a lot of boilerplate code that deals with URLs and routes in your applications.   
 Not all applications will benefit from this libarary. After all, you don't always create client and server side apps 
 at the same time and using the same programming language. But, if you do, then `client_server_generator` will be of 
 great 
 benefit to you.
+# For Developers
+First, download this repo. Then, install it using pip:
+`pip install --editable .`
+Then, depending on which framework you want to use this library with, you need install what's required for that framework to work.
+At this moment, the following frameworks and libraries are supposed by `client_server_generator`:
+- bottle
