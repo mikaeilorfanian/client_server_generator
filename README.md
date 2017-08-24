@@ -64,8 +64,8 @@ at the same time and using the same programming language. But, if you do, then `
 great 
 benefit to you.
 # For Developers
-First, download this repo. Then, install it using pip:
-`pip install --editable .`
-Then, depending on which framework you want to use this library with, you need install what's required for that framework to work.
-At this moment, the following frameworks and libraries are supposed by `client_server_generator`:
+First, download this repo. Then, install it using pip:    
+`pip install --editable .`    
+Then, depending on which framework you want to use this library with, you need install what's required for that framework to work.   
+At this moment, the following frameworks and libraries are supposed by `client_server_generator`:   
 - bottle
