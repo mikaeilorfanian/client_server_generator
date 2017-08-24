@@ -3,18 +3,21 @@ from configurator.server_conf import server_config
 
 class BaseServerGenerator:
 
-    pass
+    def __init__(self, routes):
+        self.config = server_config
+        self.routes = routes
 
 
 class BottleServer(BaseServerGenerator):
 
     def __init__(self, *routes):
-        self.config = server_config
-        self.routes = routes
+        super().__init__(routes)
 
     def run(self, host='localhost', port=8080):
-        self._make_routes()
         from bottle import run
+
+        self._make_routes()
+
         run(host=host, port=port, debug=True)
 
     def _make_routes(self):
