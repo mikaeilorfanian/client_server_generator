@@ -1,0 +1,8 @@
+server:
+  server_backend: bottle
+  domain: localhost
+  routes:
+    - route_name: hello_name
+      route: /hello/<name>
+      route_variable: name
+      http_method: GET
