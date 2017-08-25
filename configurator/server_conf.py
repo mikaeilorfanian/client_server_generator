@@ -57,5 +57,9 @@ class ServerConfig:
     def backend(self) -> str:
         return self.raw_config['server']['server_backend']
 
+    @property
+    def domain(self) -> str:
+        return self.raw_config['server']['domain']
+
 
 server_config = parse_server_conf(settings)
