@@ -17,7 +17,7 @@ def read_config_from_remoate_raw_page(page_url):
     return yaml.load(r.text)
 
 
-def parse_server_conf():
+def parse_server_conf(settings):
 
     if settings.CONFIG['type'] == settings.FILE_CONFIG_TYPE:
         conf = read_config_file(settings.CONFIG['path'])
@@ -58,4 +58,4 @@ class ServerConfig:
         return self.raw_config['server']['server_backend']
 
 
-server_config = parse_server_conf()
+server_config = parse_server_conf(settings)
