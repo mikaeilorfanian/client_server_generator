@@ -3,7 +3,7 @@ import yaml
 
 import requests
 
-import settings
+from settings import config_settings, FILE_CONFIG_TYPE, REMOTE_RAW_PAGE
 
 
 def read_config_file(file_name):
@@ -18,11 +18,10 @@ def read_config_from_remoate_raw_page(page_url):
 
 
 def parse_server_conf(settings):
-
-    if settings.CONFIG['type'] == settings.FILE_CONFIG_TYPE:
-        conf = read_config_file(settings.CONFIG['path'])
-    elif settings.CONFIG['type'] == settings.REMOTE_RAW_PAGE:
-        conf = read_config_from_remoate_raw_page(settings.CONFIG['path'])
+    if settings.type == FILE_CONFIG_TYPE:
+        conf = read_config_file(settings.path)
+    elif settings.type == REMOTE_RAW_PAGE:
+        conf = read_config_from_remoate_raw_page(settings.path)
     else:
         raise ValueError('Wrong configuration set in settings.py!')
 
@@ -62,4 +61,4 @@ class ServerConfig:
         return self.raw_config['server']['domain']
 
 
-server_config = parse_server_conf(settings)
+server_config = parse_server_conf(config_settings)

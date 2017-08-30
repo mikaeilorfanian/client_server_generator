@@ -8,7 +8,7 @@ class URL:
         self.route_name = route_name
 
     def get_full_url(self, **kwargs):
-        path = self.server_config.self.route_name.replace('<', '{').replace('>', '}').format(kwargs)
+        path = self.server_config(self.route_name).route.replace('<', '{').replace('>', '}').format(**kwargs)
         return server_config.domain + path
 
 

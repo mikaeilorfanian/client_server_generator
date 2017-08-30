@@ -1,11 +1,17 @@
+import os
+
 from configurator.server_conf import parse_server_conf
-import settings
+from settings import Settings, FILE_CONFIG_TYPE
+
+
+BASE_PATH = os.path.dirname(os.path.abspath(__file__))
+TEST_SETTING_FILE_PATH = os.path.join(BASE_PATH, 'test_server_client_conf.yaml')
 
 
 test_settings = {
-    'type': settings.FILE_CONFIG_TYPE,
-    'path': '/tests/test_server_client_conf.yaml',
+    'type': FILE_CONFIG_TYPE,
+    'path': TEST_SETTING_FILE_PATH,
 }
 
 
-test_server_conf = parse_server_conf(test_settings)
+test_server_conf = parse_server_conf(Settings(test_settings))
