@@ -1,3 +1,4 @@
+import re
 from typing import List
 import yaml
 
@@ -34,7 +35,10 @@ class Route:
         self.name = raw_config['route_name']
         self.route = raw_config['route']
         self.http_method = raw_config['http_method']
-        self.route_variable = raw_config['route_variable']
+        self.route_variables = self._get_route_variables(raw_config['route'])
+
+    def _get_route_variables(self, route: str) -> list:
+        return re.findall('<(.*?)>', route)
 
 
 class ServerConfig:
@@ -59,6 +63,11 @@ class ServerConfig:
     @property
     def domain(self) -> str:
         return self.raw_config['server']['domain']
+
+    def get_raw_route_conf(self, route_name):
+        for raw_route_conf in self.raw_routes_conf:
+            if raw_route_conf['route_name'] == route_name:
+                return raw_route_conf
 
 
 server_config = parse_server_conf(config_settings)
