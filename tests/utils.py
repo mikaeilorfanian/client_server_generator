@@ -16,13 +16,13 @@ test_settings = {
 }
 
 
-test_server_conf = parse_server_conf(Settings(test_settings))
+server_conf_for_tests = parse_server_conf(Settings(test_settings))
 
 
 
 def bottle_app_runner(route):
     app = BottleServer(
-        routes=[route], server_conf=test_server_conf
+        routes=[route], server_conf=server_conf_for_tests
     )
     app.run()
 
