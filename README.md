@@ -53,7 +53,17 @@ server:
 
 ```
 ## Client Application
-`client_server_generator` uses the same config file to produce convenient URL objects that you can use with a library like `requests`. Since there's one config file defining your server and client code, you're guaranteed to always have updated code on both sides.
+`client_server_generator` uses the same config file to produce convenient URL objects that you can use with a library like `requests`. Since there's one config file defining your server and client code, you're guaranteed to always have updated code on both sides:    
+```python
+import requests
+
+from client_generator.client_generator import URL
+
+url = URL('hello_name')
+requests.get(url.get_full_url(name='Johny'))
+```
+`URL` takes a `route_name`, the same `route_name` we used earlier to define our routing and handlers.   
+The `get_full_url` method of a `URL` instance takes key-value pairs of *route variables*(`bottle` docs calls them "URL wildcards"). The above YAML config file contains `route: /hello/<name>`. `name` is a *route variable* and when you pass `name=Johny` to `get_full_url`, it returns `/hello/Johny`.
 # Using This Library Saves You Time and a Lot of Headache
 As you can see from the above sample applications, `client_server_generator` makes your job as a web developer eaiser
  by automating the generation of a lot of boilerplate code that deals with URLs and routes in your applications.   
