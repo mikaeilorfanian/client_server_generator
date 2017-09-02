@@ -1,8 +1,7 @@
 *Important Note: this project is in **experiment** mode. This means things change rapidly and you cannot depend on the 
 exposed functionalities.*
-# Coding Web Apps Got Even Easier
-Sometimes, your web application's server and client code is written in Python. Let's say you've made a command 
-line application that interacts with your server using HTTP. Every time you change your URLs and routes on the server 
+# Generate Server and Client Code From a YAML File
+Let's say you've made a command line application that interacts with your server using HTTP. Every time you change your URLs and routes on the server 
 side, you'll 
 have to reflect these changes on the client side, too. This 
 back-and-forth editing is annoying to say the least.   
@@ -25,8 +24,8 @@ This library will generate server side and client side helper functions from a s
  and client apps won't crash. This will be true even when client apps have already been shipped!   
 # See It In Action
 ## Server Application
-Notice the lack of URLs and routes. Instead, we define `route_name` for the class that inherits from `MagicRouter` 
-and `handler` which is the controller for that route.
+Ine the snippet below, notice the lack of URLs and routes. Instead, we define a class attribute `route_name` for the class that inherits from `MagicRouter` 
+and a `handler` method which is the controller for that route.
 ```python
 from server_generator.server_generator import BottleServer, MagicRouter
 
@@ -50,12 +49,11 @@ server:
   routes:
     - route_name: hello_name
       route: /hello/<name>
-      route_variable: name
       http_method: GET
 
 ```
 ## Client Application
-TODO
+`client_server_generator` uses the same config file to produce convenient URL objects that you can use with a library like `requests`. Since there's one config file defining your server and client code, you're guaranteed to always have updated code on both sides.
 # Using This Library Saves You Time and a Lot of Headache
 As you can see from the above sample applications, `client_server_generator` makes your job as a web developer eaiser
  by automating the generation of a lot of boilerplate code that deals with URLs and routes in your applications.   
@@ -69,3 +67,5 @@ First, download this repo. Then, install it using pip:
 Then, depending on which framework you want to use this library with, you need install what's required for that framework to work.   
 At this moment, the following frameworks and libraries are supported by `client_server_generator`:   
 - bottle
+To run tests, go to the root folder and do this:    
+`pytest`
