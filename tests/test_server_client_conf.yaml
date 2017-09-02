@@ -7,5 +7,9 @@ server:
       http_method: GET
 
     - route_name: hello_name2
-      route: hello/<first_name>/<last_name>
+      route: hello2/<first_name>/<last_name>
+      http_method: GET
+
+    - route_name: hello_world
+      route: /hello/world
       http_method: GET
