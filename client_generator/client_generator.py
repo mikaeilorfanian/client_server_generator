@@ -3,7 +3,7 @@ from configurator.server_conf import server_config, ServerConfig
 
 class URL:
 
-    def __init__(self, server_conf: ServerConfig, route_name: str):
+    def __init__(self, route_name: str, server_conf: ServerConfig=server_config):
         self.server_config = server_conf
         self.route_name = route_name
 
